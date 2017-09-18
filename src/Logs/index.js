@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './index.css'
+import remarkable from 'remarkable'
 import { entries } from '../data'
+
+const md = new remarkable()
 
 class Logs extends Component {
     render() {
@@ -26,8 +29,8 @@ class Logs extends Component {
                                 <td>{invest}</td>
                                 <td>{roi}</td>
                                 <td>{gains}</td>
-                                <td className="larger-text">{decision}</td>
-                                <td className="larger-text">{learning}</td>
+                                <td dangerouslySetInnerHTML={{ __html: md.render(decision) }} className="larger-text" />
+                                <td dangerouslySetInnerHTML={{ __html: md.render(learning) }} className="larger-text" />
                             </tr>
                         ))}
                     </tbody>

@@ -7,6 +7,7 @@ function renderContent(type) {
         case "learn": return <div>Learning coming soon!</div>
         case "settings": return <div>Settings coming soon!</div>
         case "profile": return <div>Profile coming soon!</div>
+        default: return null
     }
 }
 

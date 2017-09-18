@@ -12,6 +12,8 @@ class Entry extends Component {
     render() {
         return (
             <div className="form">
+                <h3>Add New Entry</h3>
+                <p className="info">Please fill out the following fields below to record your trade journal entry. The "Why" and "Learn" input fields can be formatted with <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!</p>
                 <p>
                     <label>Coin: </label>
                     <input className="coin-input" maxLength="8" type="text" onChange={(e) => this.setState({

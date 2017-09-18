@@ -5,10 +5,6 @@
     left: 0;
     right: 0;
     padding: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     background: white;
 }
 
@@ -21,6 +17,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 24px;
 }
 
 .overlay .header button.close {
