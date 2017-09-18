@@ -3,6 +3,7 @@
   padding: 12px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 32px;
 }
 
 .logo-container, .settings-container {
@@ -23,9 +24,20 @@
   padding: 0 12px;
 }
 
-.header h1 {
+.header .title {
+  text-align: left;
+}
+
+.header .title h1,
+.header .title h2 {
   font-weight: 100;
   letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.header .title h2 {
+  font-size: 12px;
 }
 
 button.menu-item {

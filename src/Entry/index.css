@@ -1,0 +1,38 @@
+.form {
+    text-align: left;
+    width: 400px;
+}
+
+label {
+    text-transform: uppercase;
+    font-weight: 100;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+}
+
+input, textarea {
+    font-size: 16px;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 4px;
+    margin-right: 8px;
+}
+
+.coin-input {
+    width: 88px;
+}
+
+button {
+    background: none;
+    padding: 8px 12px;
+    color: white;
+    border: 1px solid #77b300;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 100;
+    background-color: #77b300;
+}

@@ -6,7 +6,7 @@ import Entry from './Entry/'
 class App extends Component {
   state = {
     profileModalVisible: false,
-    consultingModalVisible: false,
+    learnModalVisible: false,
     settingsModalVisible: false,
   }
 
@@ -15,8 +15,8 @@ class App extends Component {
       case "profile": this.setState({
         profileModalVisible: !this.state.profileModalVisible
       }); break;
-      case "consulting": this.setState({
-        consultingModalVisible: !this.state.consultingModalVisible
+      case "learn": this.setState({
+        learnModalVisible: !this.state.learnModalVisible
       }); break;
       case "settings": this.setState({
         settingsModalVisible: !this.state.settingsModalVisible
