@@ -2,32 +2,21 @@ import React, { Component } from 'react';
 import Header from './Header/'
 import Logs from './Logs/'
 import Entry from './Entry/'
+import Overlay from './Overlay'
 
 class App extends Component {
   state = {
-    profileModalVisible: false,
-    learnModalVisible: false,
-    settingsModalVisible: false,
+    modalVisible: "",
   }
 
-  toggleModal = which => {
-    switch (which) {
-      case "profile": this.setState({
-        profileModalVisible: !this.state.profileModalVisible
-      }); break;
-      case "learn": this.setState({
-        learnModalVisible: !this.state.learnModalVisible
-      }); break;
-      case "settings": this.setState({
-        settingsModalVisible: !this.state.settingsModalVisible
-      }); break;
-      default: console.log("how did you get here?")
-    }
-  }
+  toggleModal = which => this.setState({ modalVisible: which })
 
   render() {
+    const { modalVisible } = this.state
     return (
       <div className="container">
+
+        <Overlay visible={modalVisible} toggleModal={this.toggleModal} />
 
         <Header toggleModal={this.toggleModal} />
 

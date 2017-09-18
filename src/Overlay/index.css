@@ -1,0 +1,35 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+}
+
+.overlay .header, .overlay .content {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.overlay .header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.overlay .header button.close {
+    background: none;
+    border: none;
+}
+
+.overlay .header .icon {
+    height: 32px;
+    width: 32px;
+    padding: 0 12px;
+}
