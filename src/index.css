@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+.header {
+  height: 80px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-container, .settings-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon {
+  height: 64px;
+  width: 64px;
+  padding: 0 12px;
+}
+
+.icon.small {
+  height: 32px;
+  width: 32px;
+  padding: 0 12px;
+}
+
+.header h1 {
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+.logo.white {
+  color: white;
+}
