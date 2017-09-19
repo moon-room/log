@@ -67,7 +67,7 @@ button.menu-item {
   justify-content: center;
 }
 
-@media(max-width: 450px) {
+@media(max-width: 500px) {
   .settings-container {
     display: none;
   }

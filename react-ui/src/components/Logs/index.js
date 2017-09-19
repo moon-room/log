@@ -4,8 +4,8 @@ import './index.css'
 import remarkable from 'remarkable'
 import classnames from 'classnames'
 
-import note from './note.png'
-import table from './table.png'
+import note from '../../media/note.png'
+import table from '../../media/table.png'
 
 import { entries } from '../../data'
 

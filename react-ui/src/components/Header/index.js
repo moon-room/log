@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from "./logo.png"
-import avatar from "./avatar.png"
-import learn from "./learn.png"
-import settings from "./settings.png"
-import menu from "./menu.png"
+import logo from "../../media/logo.png"
+import avatar from "../../media/avatar.png"
+import learn from "../../media/learn.png"
+import settings from "../../media/settings.png"
+import menu from "../../media/menu.png"
 import './index.css'
 
 class Header extends Component {
