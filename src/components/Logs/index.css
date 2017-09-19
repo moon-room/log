@@ -2,16 +2,16 @@
     overflow-x:auto;
 }
 
-.logs {
+.table-view {
     width: 100%;
 }
 
-thead th {
+.table-view thead th {
     font-weight: 500;
     text-transform: uppercase;
 }
 
-td, th {
+.table-view td, th {
     font-weight: 100;
     border-bottom: 1px solid #ddd;
     padding: 8px 0;
@@ -20,6 +20,10 @@ td, th {
     min-width: 80px;
 }
 
-.larger-text {
+.table-view .larger-text {
     max-width: 300px;
+}
+
+.logs-container .controls {
+    text-align: right;
 }

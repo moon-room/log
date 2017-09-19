@@ -24,6 +24,12 @@
   padding: 0 12px;
 }
 
+.icon.extra-small {
+  height: 16px;
+  width: 16px;
+  padding: 0 8px;
+}
+
 .header .title {
   text-align: left;
 }

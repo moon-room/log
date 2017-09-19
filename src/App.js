@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header/'
-import Logs from './Logs/'
-import Entry from './Entry/'
-import Overlay from './Overlay'
+import Header from './components/Header/'
+import Logs from './components/Logs/'
+import Entry from './components/Entry/'
+import Overlay from './components/Overlay'
 
 class App extends Component {
   state = {

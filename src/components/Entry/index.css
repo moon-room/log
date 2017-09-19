@@ -1,0 +1,19 @@
+.form {
+    text-align: left;
+    width: 400px;
+}
+
+.form h3 {
+    margin-top: 0;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.form .info {
+    font-weight: 100;
+}
+
+.coin-input {
+    width: 88px;
+}
+

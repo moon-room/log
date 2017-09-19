@@ -33,7 +33,7 @@ class Entry extends Component {
                     })} value={this.state.why} />
                 </p>
                 <p>
-                    <button onClick={() => console.log("hurrrr")}>Enter Trade</button>
+                    <button className="green" onClick={() => console.log("hurrrr")}>Enter Trade</button>
                 </p>
                 <p>
                     <label>ROI: </label>
@@ -48,7 +48,7 @@ class Entry extends Component {
                     })} value={this.state.learned} />
                 </p>
                 <p>
-                    <button onClick={() => console.log("hurrrr")}>Complete Trade</button>
+                    <button className="green" onClick={() => console.log("hurrrr")}>Complete Trade</button>
                 </p>
             </div>
         );
