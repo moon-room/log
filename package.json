@@ -7,7 +7,9 @@
     },
     "scripts": {
         "start": "node server",
-        "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+        "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+        "test": "ENV=test jest",
+        "test:watch": "ENV=test jest --watch"
     },
     "cacheDirectories": [
         "node_modules",
@@ -29,5 +31,8 @@
         "react"
     ],
     "license": "MIT",
-    "devDependencies": {}
+    "devDependencies": {
+        "dotenv": "^4.0.0",
+        "jest": "^21.1.0"
+    }
 }
