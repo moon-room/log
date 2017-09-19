@@ -3,6 +3,7 @@ import logo from "./logo.png"
 import avatar from "./avatar.png"
 import learn from "./learn.png"
 import settings from "./settings.png"
+import menu from "./menu.png"
 import './index.css'
 
 class Header extends Component {
@@ -10,8 +11,10 @@ class Header extends Component {
         const { toggleModal } = this.props
         return (
             <div className="header">
-                <div className="logo-container">
-                    <img className="icon" src={logo} alt="a moon" />
+                <div className="left">
+                    <div className="logo-container">
+                        <img className="icon" src={logo} alt="a moon" />
+                    </div>
                     <div className="title">
                         <h1>MOON LOG</h1>
                         <h2>Trade, reflect, learn, grow.</h2>
@@ -26,6 +29,11 @@ class Header extends Component {
                     </button>
                     <button className="menu-item" onClick={() => toggleModal('profile')}>
                         <img className="icon small" src={avatar} alt="a moon" />
+                    </button>
+                </div>
+                <div className="mobile-settings-container">
+                    <button className="menu-item" onClick={() => toggleModal('menu')}>
+                        <img className="icon extra-small" src={menu} alt="three dots menu icon" />
                     </button>
                 </div>
             </div>
