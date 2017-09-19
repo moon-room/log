@@ -33,8 +33,8 @@ function renderView(type) {
                         <td>{invest}</td>
                         <td>{roi}</td>
                         <td>{gains}</td>
-                        <td className="larger-text">{decision}</td>
-                        <td className="larger-text">{learning}</td>
+                        <td className="larger-text">{decision.substring(0, 120) + "..."}</td>
+                        <td className="larger-text">{learning.substring(0, 120) + "..."}</td>
                     </tr>
                 ))}
             </tbody>
@@ -45,15 +45,28 @@ function renderView(type) {
         case "notepad": return (
             <div className="notepad-view">
                 {entries.map(({ date, market, invest, roi, gains, decision, learning }, i) => (
-                    <div className="head" key={i}>
+                    <div className="entry" key={i}>
                         <h4>{date}, {market}</h4>
-                        <ul>
-                            <li>Investment: {invest}</li>
-                            <li>Return on Investment: {invest}</li>
-                            <li>Percentage Change: {gains}</li>
-                            <div dangerouslySetInnerHTML={{ __html: md.render(decision) }} className="larger-text" />
-                            <div dangerouslySetInnerHTML={{ __html: md.render(learning) }} className="larger-text" />
-                        </ul>
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Invest</th>
+                                    <th>ROI</th>
+                                    <th>Gainz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{invest}</td>
+                                    <td>{roi}</td>
+                                    <td>{gains}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5>Why I entered this trade:</h5>
+                        <div dangerouslySetInnerHTML={{ __html: md.render(decision) }} className="larger-text" />
+                        <h5>What I learned from this trade:</h5>
+                        <div dangerouslySetInnerHTML={{ __html: md.render(learning) }} className="larger-text" />
                     </div>
                 ))}
             </div>

@@ -2,16 +2,16 @@
     overflow-x:auto;
 }
 
-.table-view {
+.logs-container {
     width: 100%;
 }
 
-.table-view thead th {
+.logs-container thead th {
     font-weight: 500;
     text-transform: uppercase;
 }
 
-.table-view td, th {
+.logs-container td, th {
     font-weight: 100;
     border-bottom: 1px solid #ddd;
     padding: 8px 0;
@@ -21,9 +21,32 @@
 }
 
 .table-view .larger-text {
+    min-width: 300px;
     max-width: 300px;
+    width: 100%;
 }
 
 .logs-container .controls {
     text-align: right;
+}
+
+.logs-container .notepad-view {
+    text-align: left;
+}
+
+.logs-container .notepad-view .entry {
+    border-bottom: 1px solid #ddd;
+    padding: 48px 0 32px 0;
+}
+
+.logs-container .notepad-view .entry h4 {
+    margin-top: 0;
+}
+
+.logs-container .notepad-view .entry:first-of-type {
+    padding-top:0;
+}
+
+.logs-container .data-table {
+    font-family: "monospace"
 }

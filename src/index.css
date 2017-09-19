@@ -60,9 +60,17 @@ button.transparent {
 }
 
 button.active {
-  border: 1px solid #ddd;
+  border: 0;
+  background: rgba(0,0,0,0.05)
 }
 
 button.small {
   padding: 10px 4px;
+}
+
+
+span.numeric-span {
+  padding: 2px 4px;
+  background-color: #ddd;
+  font-family: "monospace"
 }
