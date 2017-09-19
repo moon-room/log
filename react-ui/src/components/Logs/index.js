@@ -77,7 +77,7 @@ function renderView(type) {
 
 class Logs extends Component {
     state = {
-        view: "table"
+        view: window.innerHeight < 700 ? "notepad" : "table"
     }
 
     toggleView = view => this.setState({ view: view })
@@ -85,6 +85,10 @@ class Logs extends Component {
     render() {
         const { view } = this.state
         const buttonClasses = ["control", "small"]
+
+        const controlsClasses = classnames("controls", {
+            invisible: window.innerHeight < 700,
+        })
 
         const tableButtonClasses = classnames(buttonClasses, {
             transparent: view !== "table",
@@ -98,7 +102,7 @@ class Logs extends Component {
 
         return (
             <div className="logs-container">
-                <div className="controls">
+                <div className={controlsClasses}>
                     <button disabled={view === "table"} className={tableButtonClasses} onClick={() => this.toggleView('table')}>
                         <img className="icon extra-small" src={table} alt="excel spreadsheet" />
                     </button>
@@ -106,6 +110,7 @@ class Logs extends Component {
                         <img className="icon extra-small" src={note} alt="notepad" />
                     </button>
                 </div>
+                <h3>View Past Entries</h3>
                 {renderView(this.state.view)}
             </div>
         );

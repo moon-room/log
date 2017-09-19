@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-width: 84px;
+  min-width: 88px;
 }
 
 .icon {
@@ -67,7 +67,7 @@ button.menu-item {
   justify-content: center;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 768px) {
   .settings-container {
     display: none;
   }

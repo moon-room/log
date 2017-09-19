@@ -2,10 +2,6 @@
     overflow-x:auto;
 }
 
-.logs-container {
-    width: 100%;
-}
-
 .logs-container thead th {
     font-weight: 500;
     text-transform: uppercase;
@@ -28,6 +24,10 @@
 
 .logs-container .controls {
     text-align: right;
+}
+
+.logs-container .controls.invisible {
+    display: none;
 }
 
 .logs-container .notepad-view {
