@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './index.css'
 
 import remarkable from 'remarkable'
-import classnames from 'classnames'
+// import classnames from 'classnames'
 
-import note from '../../media/note.png'
+// import note from '../../media/note.png'
 import table from '../../media/table.png'
 
 import { entries } from '../../data'
@@ -77,32 +77,34 @@ function renderView(type) {
 
 class Logs extends Component {
     state = {
-        view: window.innerHeight < 700 ? "notepad" : "table"
+        //view: window.innerWidth < 700 ? "notepad" : "table",
+        view: "notepad"
     }
 
     toggleView = view => this.setState({ view: view })
 
     render() {
-        const { view } = this.state
-        const buttonClasses = ["control", "small"]
+        // const { view } = this.state
+        // const buttonClasses = ["control", "small"]
 
-        const controlsClasses = classnames("controls", {
-            invisible: window.innerHeight < 700,
-        })
+        // const controlsClasses = classnames("controls", {
+        //     invisible: window.innerWidth < 700,
+        // })
 
-        const tableButtonClasses = classnames(buttonClasses, {
-            transparent: view !== "table",
-            active: view === "table",
-        })
+        // const tableButtonClasses = classnames(buttonClasses, {
+        //     transparent: view !== "table",
+        //     active: view === "table",
+        // })
 
-        const notepadButtonClasses = classnames(buttonClasses, {
-            transparent: view !== "notepad",
-            active: view === "notepad",
-        })
+        // const notepadButtonClasses = classnames(buttonClasses, {
+        //     transparent: view !== "notepad",
+        //     active: view === "notepad",
+        // })
 
         return (
             <div className="logs-container">
-                <div className={controlsClasses}>
+                {/*
+                    <div className={controlsClasses}>
                     <button disabled={view === "table"} className={tableButtonClasses} onClick={() => this.toggleView('table')}>
                         <img className="icon extra-small" src={table} alt="excel spreadsheet" />
                     </button>
@@ -110,6 +112,7 @@ class Logs extends Component {
                         <img className="icon extra-small" src={note} alt="notepad" />
                     </button>
                 </div>
+                */}
                 <h3>View Past Entries</h3>
                 {renderView(this.state.view)}
             </div>

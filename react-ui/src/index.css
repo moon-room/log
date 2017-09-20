@@ -6,19 +6,15 @@ body {
 
 .container {
   text-align: center;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   justify-content: space-around;
   align-items: flex-start;
-}
-
-.content div {
-  padding: 0 18px;
 }
 
 label {
@@ -28,14 +24,15 @@ label {
 
 textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 80px;
+  font-weight: 100;
 }
 
 input, textarea {
   font-size: 16px;
   background: none;
   border: 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #a5a5a5;
   padding: 8px 4px;
   margin-right: 8px;
 }
@@ -75,8 +72,8 @@ span.numeric-span {
   font-family: "monospace"
 }
 
-@media(max-width: 768px) {
-  .content {
-    flex-direction: column-reverse;
+@media(max-width: 768px){
+  .content div {
+    padding: 0 18px;
   }
 }

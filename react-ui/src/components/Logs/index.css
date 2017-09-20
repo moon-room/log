@@ -1,10 +1,29 @@
 .logs-container {
-    overflow-x:auto;
+    overflow-x: auto;
+    text-align: left;
+    padding: 24px;
+}
+
+.logs-container .notepad-view,
+.logs-container .larger-text {
+    padding: 0;
 }
 
 .logs-container thead th {
     font-weight: 500;
     text-transform: uppercase;
+}
+
+
+.logs-container h3,
+.logs-container h4,
+.logs-container h5 {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.logs-container p {
+    font-weight: 100;
 }
 
 .logs-container td, th {
@@ -24,6 +43,7 @@
 
 .logs-container .controls {
     text-align: right;
+    padding: 0;
 }
 
 .logs-container .controls.invisible {
