@@ -7,6 +7,10 @@ body {
   font-weight: 300;
 }
 
+body.noScroll {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,

@@ -1,45 +1,40 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 64px;
-    background: white;
-}
-
-.overlay .header, .overlay .content {
-    max-width: 768px;
-    margin: 0 auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 64px;
+  background: white;
 }
 
 .overlay .header {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
 }
 
 .overlay .header button.close {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .overlay .header .icon {
-    height: 32px;
-    width: 32px;
-    padding: 0 12px;
+  height: 32px;
+  width: 32px;
+  padding: 0 12px;
 }
 
 .overlay .content {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@media(max-width: 768px) {
-    .overlay {
-        padding: 12px;
-    }
+@media (max-width: 768px) {
+  .overlay {
+    padding: 12px;
   }
+}

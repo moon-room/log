@@ -9,7 +9,18 @@ class App extends Component {
     modalVisible: ""
   };
 
-  toggleModal = which => this.setState({ modalVisible: which });
+  toggleModal = which => {
+    if (Boolean(which)) {
+      document.body.className += "noScroll";
+    } else {
+      document.body.className = document.body.className.replace(
+        /\bnoScroll\b/,
+        ""
+      );
+    }
+
+    this.setState({ modalVisible: which });
+  };
 
   render() {
     const { modalVisible } = this.state;
