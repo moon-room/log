@@ -16,19 +16,23 @@ body {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 24px;
-  /* background: white; */
 }
 
 .container .attribution {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
   font-size: 12px;
   text-transform: uppercase;
-  color: #a5a5a5
+  color: #a5a5a5;
+  padding: 24px;
+  background: black;
 }
 
 .container .attribution a {
   text-decoration: none;
+  color: white;
 }
 
 .content {
@@ -36,6 +40,10 @@ body {
   flex-direction: column-reverse;
   justify-content: space-around;
   align-items: flex-start;
+}
+
+.content div {
+  padding: 0 24px;
 }
 
 label {
@@ -49,7 +57,8 @@ textarea {
   font-weight: 100;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 16px;
   background: none;
   border: 0;
@@ -79,22 +88,15 @@ button.transparent {
 
 button.active {
   border: 0;
-  background: rgba(0,0,0,0.05)
+  background: rgba(0, 0, 0, 0.05);
 }
 
 button.small {
   padding: 10px 4px;
 }
 
-
 span.numeric-span {
   padding: 2px 4px;
   background-color: #ddd;
-  font-family: "monospace"
-}
-
-@media(max-width: 768px){
-  .content div {
-    padding: 0 18px;
-  }
+  font-family: "monospace";
 }
