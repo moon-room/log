@@ -1,123 +1,98 @@
-import React, { Component } from 'react';
-import './index.css'
+import React, { Component } from "react";
+import "./index.css";
 
-import remarkable from 'remarkable'
-// import classnames from 'classnames'
+import remarkable from "remarkable";
 
-// import note from '../../media/note.png'
-import table from '../../media/table.png'
+import { entries } from "../../data";
 
-import { entries } from '../../data'
-
-const md = new remarkable()
-
-function renderView(type) {
-    const tableView = (
-        <table className="table-view">
-            <thead>
-                <tr>
-                    <th>date</th>
-                    <th>market</th>
-                    <th>invest</th>
-                    <th>roi</th>
-                    <th>% gainz</th>
-                    <th>decision</th>
-                    <th>learning</th>
-                </tr>
-            </thead>
-            <tbody>
-                {entries.map(({ date, market, invest, roi, gains, decision, learning }, i) => (
-                    <tr key={i}>
-                        <td>{date}</td>
-                        <td>{market}</td>
-                        <td>{invest}</td>
-                        <td>{roi}</td>
-                        <td>{gains}</td>
-                        <td className="larger-text">{decision.substring(0, 120) + "..."}</td>
-                        <td className="larger-text">{learning.substring(0, 120) + "..."}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    )
-    switch (type) {
-        case "table": return tableView;
-        case "notepad": return (
-            <div className="notepad-view">
-                {entries.map(({ date, market, invest, roi, gains, decision, learning }, i) => (
-                    <div className="entry" key={i}>
-                        <h4>{date}, {market}</h4>
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Invest</th>
-                                    <th>ROI</th>
-                                    <th>Gainz</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{invest}</td>
-                                    <td>{roi}</td>
-                                    <td>{gains}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>Why I entered this trade:</h5>
-                        <div dangerouslySetInnerHTML={{ __html: md.render(decision) }} className="larger-text" />
-                        <h5>What I learned from this trade:</h5>
-                        <div dangerouslySetInnerHTML={{ __html: md.render(learning) }} className="larger-text" />
-                    </div>
-                ))}
-            </div>
-        )
-        default: return tableView;
-    }
-}
+const md = new remarkable();
 
 class Logs extends Component {
-    state = {
-        //view: window.innerWidth < 700 ? "notepad" : "table",
-        view: "notepad"
-    }
+  state = {
+    logsShown: false
+  };
 
-    toggleView = view => this.setState({ view: view })
-
-    render() {
-        // const { view } = this.state
-        // const buttonClasses = ["control", "small"]
-
-        // const controlsClasses = classnames("controls", {
-        //     invisible: window.innerWidth < 700,
-        // })
-
-        // const tableButtonClasses = classnames(buttonClasses, {
-        //     transparent: view !== "table",
-        //     active: view === "table",
-        // })
-
-        // const notepadButtonClasses = classnames(buttonClasses, {
-        //     transparent: view !== "notepad",
-        //     active: view === "notepad",
-        // })
-
-        return (
-            <div className="logs-container">
-                {/*
-                    <div className={controlsClasses}>
-                    <button disabled={view === "table"} className={tableButtonClasses} onClick={() => this.toggleView('table')}>
-                        <img className="icon extra-small" src={table} alt="excel spreadsheet" />
-                    </button>
-                    <button disabled={view === "notepad"} className={notepadButtonClasses} onClick={() => this.toggleView('notepad')}>
-                        <img className="icon extra-small" src={note} alt="notepad" />
-                    </button>
+  render() {
+    return (
+      <div className="logs-container">
+        <div className="title">
+          <h2>Trade Journal</h2>
+        </div>
+        <div className="notepad-view">
+          {entries.map(
+            (
+              {
+                date,
+                coin,
+                entry,
+                exit,
+                technical_analysis,
+                gut_feeling,
+                other_influences,
+                next_time_improve,
+                what_went_well,
+                unexpected
+              },
+              i
+            ) => (
+              <div className="entry" key={i}>
+                <div className="entry__header">
+                  <h3>
+                    {date}, {coin}
+                  </h3>
+                  <ul>
+                    <li>Investment: {entry}</li>
+                    <li>Exit Amount: {exit}</li>
+                    <li>Winnings: {exit - entry}</li>
+                  </ul>
                 </div>
-                */}
-                <h3>View Past Entries</h3>
-                {renderView(this.state.view)}
-            </div>
-        );
-    }
+                <h4>What Technical Analysis did I use to enter this trade?</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: md.render(technical_analysis)
+                  }}
+                  className="markdown-container"
+                />
+                <h4>What was my gut feeling on entering this trade?</h4>
+                <div
+                  dangerouslySetInnerHTML={{ __html: md.render(gut_feeling) }}
+                  className="markdown-container"
+                />
+                <h4>Did anything else influence my decision?</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: md.render(other_influences)
+                  }}
+                  className="markdown-container"
+                />
+                <h4>What I will improve upon next time</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: md.render(next_time_improve)
+                  }}
+                  className="markdown-container"
+                />
+                <h4>What went well</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: md.render(what_went_well)
+                  }}
+                  className="markdown-container"
+                />
+                <h4>Did anything occur that was unexpected?</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: md.render(unexpected)
+                  }}
+                  className="markdown-container"
+                />
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Logs;
