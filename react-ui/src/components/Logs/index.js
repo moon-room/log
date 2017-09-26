@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Pagination from "react-js-pagination";
+import ReactEmojiRenderer from "react-emoji-render";
 import "./index.css";
 
 import remarkable from "remarkable";
@@ -8,10 +9,16 @@ import { entries } from "../../data";
 
 const md = new remarkable();
 
+const emojizePositivity = (entry, exit) => {
+  const score = exit - entry;
+  const emoji = Boolean(score) ? ":heart_eyes:" : ":persevere:";
+  return <ReactEmojiRenderer text={`${emoji} -> ${score}`} />;
+};
+
 class Logs extends Component {
   state = {
     currentPage: 1,
-    resultsPerPage: 2
+    resultsPerPage: 1
   };
 
   handlePageChange = n => {
@@ -37,7 +44,7 @@ class Logs extends Component {
       <div className="logs-container">
         <div className="title">
           <h2>Past Journal Entries</h2>
-          <div className="results-container">
+          <div className="filter-bar">
             <label>Per Page:</label>
             <select value={resultsPerPage} onChange={this.setResultsPerPage}>
               <option value="1">1</option>
@@ -77,7 +84,7 @@ class Logs extends Component {
                     <ul>
                       <li>Investment: {entry}</li>
                       <li>Exit Amount: {exit}</li>
-                      <li>Winnings: {exit - entry}</li>
+                      <li>{emojizePositivity(entry, exit)}</li>
                     </ul>
                   </div>
                   <h4>
@@ -101,14 +108,14 @@ class Logs extends Component {
                     }}
                     className="markdown-container"
                   />
-                  <h4>What I will improve upon next time</h4>
+                  <h4>What I will improve upon next time?</h4>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: md.render(next_time_improve)
                     }}
                     className="markdown-container"
                   />
-                  <h4>What went well</h4>
+                  <h4>What went well?</h4>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: md.render(what_went_well)
@@ -122,6 +129,7 @@ class Logs extends Component {
                     }}
                     className="markdown-container"
                   />
+                  <div className="line-break" />
                 </div>
               )
             )}

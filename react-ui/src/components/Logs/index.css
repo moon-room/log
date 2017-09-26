@@ -1,5 +1,6 @@
 .logs-container,
-.logs-container .entry .entry__header  {
+.logs-container .entry .entry__header,
+.logs-container .title .filter-bar {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -8,7 +9,7 @@
 .logs-container {
   overflow-x: auto;
   text-align: left;
-  padding: 24px;
+  padding: 0 12px !important;
   margin-top: 24px;
   width: 100%;
 }
@@ -23,9 +24,10 @@
   padding: 0;
 }
 
-.logs-container thead th {
-  font-weight: 500;
-  text-transform: uppercase;
+.logs-container .markdown-container {
+  padding: 0 0 0 16px;
+  margin: 0 0 0 16px;
+  border-left: 1px solid #ddd;
 }
 
 .logs-container .title {
@@ -36,14 +38,21 @@
   min-height: 40px;
 }
 
-.logs-container .title .results-container {
+.logs-container .title .filter-bar {
   margin-top: 12px;
   padding-left: 0;
+  width: 100%;
+  background-color: #fafafa;
+  padding: 12px 24px;
 }
 
-.logs-container .title .results-container label {
-  font-size: 12px;
+.logs-container .title .filter-bar label {
+  font-size: 16px;
   padding-right: 8px;
+}
+
+.logs-container .title .filter-bar select {
+  font-size: 16px;
 }
 
 .logs-container .title h2 {
@@ -52,24 +61,23 @@
   margin: 0;
 }
 
-.logs-container .title img {
-  width: 18px;
-  height: 18px;
-}
-
-.logs-container .title .transparent {
-  margin-left: auto;
-}
-
-ul {
+.logs-container .entry__header ul {
   margin-top: 0;
+  list-style: none;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid #ddd;
+}
+
+.logs-container .markdown-container {
+  margin-bottom: 32px;
 }
 
 .logs-container h3,
 .logs-container h4,
 .logs-container h5 {
   font-weight: 500;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .logs-container p {
@@ -85,38 +93,29 @@ ul {
   display: none;
 }
 
-.logs-container {
-  text-align: left;
-}
-
 .logs-container .entry {
   padding: 0;
   margin: 48px 0 32px 0;
-}
-
-.logs-container .entry .entry__header,
-.logs-container .entry .markdown-container {
-  border-bottom: 1px solid #ddd;
 }
 
 .logs-container .entry .entry__header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 24px;
-  border-width: 2px;
 }
 
 .logs-container .entry .entry__header h3 {
   margin: 8px 0;
+  font-size: 24px;
 }
 
 .logs-container .entry h4 {
-  margin-bottom: 12px;
+  margin: 8px 0;
+  font-size: 20px;
 }
 
 .logs-container .entry:first-of-type {
-  padding-top: 0;
+  margin-top: 0;
 }
 
 .pagination-container {
@@ -130,7 +129,7 @@ ul {
   display: inline-block;
   padding-left: 0;
   margin: 8px 0;
-  font-size: 12px;
+  font-size: 16px;
   text-transform: uppercase;
 }
 .pagination > li {
@@ -191,4 +190,10 @@ ul {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
+}
+
+.line-break {
+  height: 2px;
+  width: 100px;
+  background: black;
 }
