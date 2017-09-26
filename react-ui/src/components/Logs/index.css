@@ -10,24 +10,15 @@
   overflow-x: auto;
   text-align: left;
   padding: 0 12px !important;
-  margin-top: 24px;
+  margin-top: 12px;
   width: 100%;
 }
 
-.logs-container .notepad-view,
-.logs-container .entry .entry__header {
-  padding: 0;
-}
-
 .logs-container,
+.logs-container .notepad-view,
+.logs-container .entry .entry__header,
 .logs-container .markdown-container {
   padding: 0;
-}
-
-.logs-container .markdown-container {
-  padding: 0 0 0 16px;
-  margin: 0 0 0 16px;
-  border-left: 1px solid #ddd;
 }
 
 .logs-container .title {
@@ -36,6 +27,12 @@
   flex-direction: column;
   align-items: flex-start;
   min-height: 40px;
+}
+
+.logs-container .title h2 {
+  font-weight: 100;
+  font-size: 32px;
+  margin: 0;
 }
 
 .logs-container .title .filter-bar {
@@ -55,22 +52,10 @@
   font-size: 16px;
 }
 
-.logs-container .title h2 {
-  font-weight: 100;
-  font-size: 32px;
-  margin: 0;
-}
-
-.logs-container .entry__header ul {
-  margin-top: 0;
-  list-style: none;
-  margin-left: 16px;
-  padding-left: 16px;
-  border-left: 1px solid #ddd;
-}
-
 .logs-container .markdown-container {
-  margin-bottom: 32px;
+  padding: 0 0 0 16px;
+  margin: 0 0 0 32px;
+  border-left: 1px solid #ddd;
 }
 
 .logs-container h3,
@@ -109,6 +94,14 @@
   font-size: 24px;
 }
 
+.logs-container .entry__header ul {
+  margin-top: 0;
+  list-style: none;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid #ddd;
+}
+
 .logs-container .entry h4 {
   margin: 8px 0;
   font-size: 20px;
@@ -117,6 +110,14 @@
 .logs-container .entry:first-of-type {
   margin-top: 0;
 }
+
+.line-break {
+  height: 2px;
+  width: 100px;
+  background: black;
+}
+
+/* pagination */
 
 .pagination-container {
   display: flex;
@@ -190,10 +191,4 @@
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
-}
-
-.line-break {
-  height: 2px;
-  width: 100px;
-  background: black;
 }
