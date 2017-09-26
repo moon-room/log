@@ -1,12 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,700");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,700');
+
 body {
   margin: 0;
   padding: 0;
   font-family: Roboto;
-  font-weight: 300; }
+  font-weight: 300;
+}
 
 body.noScroll {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 h1,
 h2,
@@ -15,12 +18,14 @@ h4,
 h5,
 h6 {
   font-family: "Open Sans";
-  font-weight: 300; }
+  font-weight: 300;
+}
 
 .container {
   text-align: center;
   max-width: 900px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .container .attribution {
   display: flex;
@@ -31,29 +36,35 @@ h6 {
   text-transform: uppercase;
   color: #a5a5a5;
   padding: 24px;
-  background: black; }
+  background: black;
+}
 
 .container .attribution a {
   text-decoration: none;
-  color: white; }
+  color: white;
+}
 
 .content {
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-around;
-  align-items: flex-start; }
+  align-items: flex-start;
+}
 
 .content div {
-  padding: 0 24px; }
+  padding: 0 24px;
+}
 
 label {
   text-transform: uppercase;
-  font-weight: 100; }
+  font-weight: 100;
+}
 
 textarea {
   width: 100%;
   min-height: 80px;
-  font-weight: 100; }
+  font-weight: 100;
+}
 
 input,
 textarea {
@@ -62,7 +73,8 @@ textarea {
   border: 0;
   border-bottom: 1px solid #a5a5a5;
   padding: 8px 4px;
-  margin-right: 8px; }
+  margin-right: 8px;
+}
 
 button {
   background: none;
@@ -70,24 +82,30 @@ button {
   color: white;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 100; }
+  font-weight: 100;
+}
 
 button.green {
   background-color: #77b300;
-  border: 1px solid #77b300; }
+  border: 1px solid #77b300;
+}
 
 button.transparent {
   background-color: none;
-  border: none; }
+  border: none;
+}
 
 button.active {
   border: 0;
-  background: rgba(0, 0, 0, 0.05); }
+  background: rgba(0, 0, 0, 0.05);
+}
 
 button.small {
-  padding: 10px 4px; }
+  padding: 10px 4px;
+}
 
 span.numeric-span {
   padding: 2px 4px;
   background-color: #ddd;
-  font-family: "monospace"; }
+  font-family: "monospace";
+}

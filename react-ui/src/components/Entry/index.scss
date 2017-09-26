@@ -1,0 +1,58 @@
+.form {
+    text-align: left;
+    background: 	rgba(221, 221, 221, 0.25);
+    padding: 24px !important;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    width: 100%;
+}
+
+.form .title {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 40px;
+}
+
+.form .title h3 {
+    font-weight: 100;
+    font-size: 20px;
+    padding-right: 12px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.form .title img {
+    width: 18px;
+    height: 18px;
+}
+
+.form .title .transparent {
+    margin-left: auto;
+}
+
+.form .body {
+    margin-top: 24px;
+    border-top: 1px solid #ddd;
+    padding: 0;
+}
+
+.form .info {
+    font-weight: 100;
+    font-size: 16px;
+    width: 200px;
+    padding: 12px;
+}
+
+.coin-input {
+    width: 88px;
+}
+
+
+@media(min-width: 768px) {
+    .form {
+        min-width: 400px;
+    }
+}

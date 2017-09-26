@@ -6,25 +6,29 @@
   right: 0;
   background: white;
   display: flex;
-  flex-flow: column; }
+  flex-flow: column;
+}
 
 .overlay .header {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
   padding-right: 20px;
-  max-height: 104px; }
+  max-height: 104px;
+}
 
 .overlay .header button.icon-button {
   background: none;
   border: none;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 .overlay .header .icon {
   height: 32px;
   width: 32px;
-  padding: 0 12px; }
+  padding: 0 12px;
+}
 
 .overlay .content {
   flex-direction: column;
@@ -33,4 +37,5 @@
   flex: 1;
   overflow: auto;
   padding-bottom: 48px;
-  width: 100%; }
+  width: 100%;
+}
