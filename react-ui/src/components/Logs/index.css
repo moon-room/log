@@ -48,10 +48,8 @@
 
 .logs-container .title h2 {
   font-weight: 100;
-  font-size: 20px;
-  padding-right: 12px;
+  font-size: 32px;
   margin: 0;
-  text-transform: uppercase;
 }
 
 .logs-container .title img {
@@ -92,7 +90,8 @@ ul {
 }
 
 .logs-container .entry {
-  padding: 48px 0 32px 0;
+  padding: 0;
+  margin: 48px 0 32px 0;
 }
 
 .logs-container .entry .entry__header,
@@ -118,6 +117,13 @@ ul {
 
 .logs-container .entry:first-of-type {
   padding-top: 0;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
 .pagination {

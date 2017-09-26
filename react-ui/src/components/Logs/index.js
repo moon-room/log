@@ -36,9 +36,9 @@ class Logs extends Component {
     return (
       <div className="logs-container">
         <div className="title">
-          <h2>Trade Journal</h2>
+          <h2>Past Journal Entries</h2>
           <div className="results-container">
-            <label>Results Per Page</label>
+            <label>Per Page:</label>
             <select value={resultsPerPage} onChange={this.setResultsPerPage}>
               <option value="1">1</option>
               <option value="5">5</option>
@@ -46,18 +46,6 @@ class Logs extends Component {
               <option value="25">25</option>
             </select>
           </div>
-          <Pagination
-            prevPageText="prev"
-            nextPageText="next"
-            firstPageText="first"
-            lastPageText="last"
-            hideDisabled
-            activePage={currentPage}
-            itemsCountPerPage={resultsPerPage}
-            totalItemsCount={entries.length}
-            pageRangeDisplayed={3}
-            onChange={this.handlePageChange}
-          />
         </div>
         <div className="notepad-view">
           {entries
@@ -137,6 +125,20 @@ class Logs extends Component {
                 </div>
               )
             )}
+        </div>
+        <div className="pagination-container">
+          <Pagination
+            prevPageText="prev"
+            nextPageText="next"
+            firstPageText="first"
+            lastPageText="last"
+            hideDisabled
+            activePage={currentPage}
+            itemsCountPerPage={resultsPerPage}
+            totalItemsCount={entries.length}
+            pageRangeDisplayed={3}
+            onChange={this.handlePageChange}
+          />
         </div>
       </div>
     );
