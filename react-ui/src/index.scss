@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,700');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,700");
+
+@import "styles/variables.scss";
 
 body {
   margin: 0;
@@ -34,7 +36,7 @@ h6 {
   flex-direction: column;
   font-size: 12px;
   text-transform: uppercase;
-  color: #a5a5a5;
+  color: $grey;
   padding: 24px;
   background: black;
 }
@@ -81,13 +83,13 @@ button {
   padding: 8px 12px;
   color: white;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 100;
 }
 
 button.green {
-  background-color: #77b300;
-  border: 1px solid #77b300;
+  background-color: $go-green;
+  border: 1px solid $go-green;
 }
 
 button.transparent {
@@ -104,8 +106,8 @@ button.small {
   padding: 10px 4px;
 }
 
-span.numeric-span {
-  padding: 2px 4px;
-  background-color: #ddd;
-  font-family: "monospace";
+.line-break {
+  height: 2px;
+  width: 100px;
+  background: black;
 }

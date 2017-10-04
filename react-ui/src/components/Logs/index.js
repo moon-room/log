@@ -18,7 +18,8 @@ const emojizePositivity = (entry, exit) => {
 class Logs extends Component {
   state = {
     currentPage: 1,
-    resultsPerPage: 1
+    resultsPerPage: 1,
+    winLossFilter: "all"
   };
 
   handlePageChange = n => {
@@ -37,21 +38,39 @@ class Logs extends Component {
     this.setState({ resultsPerPage: Number(value) });
   };
 
+  filterWinsOrLosses = e => {
+    const value = e.target.value;
+    if (value === this.state.winLossFilter) {
+      return;
+    }
+    this.setState({ winLossFilter: value });
+  };
+
   render() {
-    const { resultsPerPage, currentPage } = this.state;
+    const { resultsPerPage, currentPage, winLossFilter } = this.state;
 
     return (
       <div className="logs-container">
         <div className="title">
-          <h2>Past Journal Entries</h2>
-          <div className="filter-bar">
-            <label>Per Page:</label>
-            <select value={resultsPerPage} onChange={this.setResultsPerPage}>
-              <option value="1">1</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="25">25</option>
-            </select>
+          <h2>Trade Logs</h2>
+          <div className="filter__bar">
+            <div className="filter__item">
+              <label>Per Page:</label>
+              <select value={resultsPerPage} onChange={this.setResultsPerPage}>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+              </select>
+            </div>
+            <div className="filter__item">
+              <label>Show:</label>
+              <select value={winLossFilter} onChange={this.filterWinsOrLosses}>
+                <option value="all">all</option>
+                <option value="wins">wins</option>
+                <option value="losses">losses</option>
+              </select>
+            </div>
           </div>
         </div>
         <div className="notepad-view">
@@ -60,6 +79,16 @@ class Logs extends Component {
               currentPage * resultsPerPage - resultsPerPage,
               currentPage * resultsPerPage
             )
+            .filter(e => {
+              switch (winLossFilter) {
+                case "wins":
+                  return Boolean(e.exit - e.entry) && e;
+                case "losses":
+                  return !Boolean(e.exit - e.entry) && e;
+                default:
+                  return e;
+              }
+            })
             .map(
               (
                 {
@@ -129,7 +158,6 @@ class Logs extends Component {
                     }}
                     className="markdown-container"
                   />
-                  <div className="line-break" />
                 </div>
               )
             )}

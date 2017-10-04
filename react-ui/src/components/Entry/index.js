@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
-import info from "../../media/info.png";
-import add from "../../media/add.png";
-import close from "../../media/close.png";
+import info from "../../media/info-white.png";
+import add from "../../media/add-white.png";
+import close from "../../media/close-white.png";
 import "./index.css";
+
+import classnames from "classnames";
 
 class Entry extends Component {
   state = {
@@ -13,10 +15,10 @@ class Entry extends Component {
     exit: 0.2,
     ta: "",
     gut: "",
+    other: "",
     unexpected: "",
     nextImprove: "",
     wentWell: "",
-    learned: "",
     step: 1
   };
 
@@ -39,17 +41,35 @@ class Entry extends Component {
   };
 
   render() {
-    return this.state.step === 1 ? (
-      <div className="form">
+    const {
+      entryShown,
+      coin,
+      enter,
+      exit,
+      ta,
+      gut,
+      other,
+      unexpected,
+      nextImprove,
+      wentWell,
+      step
+    } = this.state;
+
+    const formClasses = classnames("form", {
+      "entry-shown": entryShown
+    });
+
+    return step === 1 ? (
+      <div className={formClasses}>
         <div className="title">
-          <h3>Enter Trade</h3>
+          <h3>{step < 1 ? "Enter Trade" : "Enter Trade"}</h3>
           <img
             alt="information icon"
             className="info-icon"
             src={info}
             data-tip="hello world"
           />
-          {this.state.entryShown ? (
+          {entryShown ? (
             <button
               className="transparent"
               onClick={() =>
@@ -73,13 +93,12 @@ class Entry extends Component {
         </div>
         <ReactTooltip type="light" className="info" place="bottom">
           Please fill out the following fields below to record your trade
-          journal entry. The "Why" and "Learn" input fields can be formatted
-          with{" "}
+          journal entry. The larget textarea input fields can be formatted with{" "}
           <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
             Markdown
           </a>!
         </ReactTooltip>
-        {this.state.entryShown ? (
+        {entryShown && (
           <div className="body">
             <p>
               <label>Coin: </label>
@@ -91,7 +110,7 @@ class Entry extends Component {
                   this.setState({
                     coin: e.target.value
                   })}
-                value={this.state.coin}
+                value={coin}
               />
             </p>
             <p>
@@ -102,7 +121,7 @@ class Entry extends Component {
                   this.setState({
                     investment: e.target.value
                   })}
-                value={this.state.enter}
+                value={enter}
               />
             </p>
             <p>
@@ -113,7 +132,7 @@ class Entry extends Component {
                   this.setState({
                     why: e.target.value
                   })}
-                value={this.state.gut}
+                value={gut}
               />
             </p>
             <p>
@@ -124,7 +143,7 @@ class Entry extends Component {
                   this.setState({
                     why: e.target.value
                   })}
-                value={this.state.ta}
+                value={ta}
               />
             </p>
             <p>
@@ -133,9 +152,9 @@ class Entry extends Component {
                 placeholder="Tradingview charts, twitter links, etc..."
                 onChange={e =>
                   this.setState({
-                    why: e.target.value
+                    other: e.target.value
                   })}
-                value={this.state.other}
+                value={other}
               />
             </p>
             <p>
@@ -144,10 +163,10 @@ class Entry extends Component {
               </button>
             </p>
           </div>
-        ) : null}
+        )}
       </div>
     ) : (
-      <div className="form">
+      <div className={formClasses}>
         <div className="title">
           <h3>Exit Trade</h3>
           <img
@@ -165,17 +184,17 @@ class Entry extends Component {
             Markdown
           </a>!
         </ReactTooltip>
-        {this.state.entryShown ? (
+        {entryShown && (
           <div className="body">
             <p>
-              <label>ROI: </label>
+              <label>Exit trade with... </label>
               <input
                 type="number"
                 onChange={e =>
                   this.setState({
-                    roi: e.target.value
+                    exit: e.target.value
                   })}
-                value={this.state.roi}
+                value={exit}
               />
             </p>
             <p>
@@ -186,7 +205,7 @@ class Entry extends Component {
                   this.setState({
                     wentWell: e.target.value
                   })}
-                value={this.state.wentWell}
+                value={wentWell}
               />
             </p>
             <p>
@@ -197,7 +216,7 @@ class Entry extends Component {
                   this.setState({
                     nextImprove: e.target.value
                   })}
-                value={this.state.nextImprove}
+                value={nextImprove}
               />
             </p>
             <p>
@@ -208,7 +227,7 @@ class Entry extends Component {
                   this.setState({
                     unexpected: e.target.value
                   })}
-                value={this.state.unexpected}
+                value={unexpected}
               />
             </p>
             <p>
@@ -217,7 +236,7 @@ class Entry extends Component {
               </button>
             </p>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }
