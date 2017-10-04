@@ -6,7 +6,7 @@ import Settings from "./Settings";
 import Profile from "./Profile";
 import Learn from "./Learn";
 
-import close from "../../media/close.png";
+import close from "../../../media/close.png";
 
 function renderContent(type, toggleModal) {
   switch (type) {

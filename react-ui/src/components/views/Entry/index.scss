@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
 .form,
 .form textarea {
@@ -19,17 +19,13 @@
     }
   }
 
-  .title,
-  .body {
-    padding: 24px !important;
-  }
-
   .title {
     display: flex;
     flex-direction: row;
     align-items: center;
     min-height: 40px;
     background-color: $go-green;
+    padding: 24px !important;
 
     h3 {
       font-weight: 100;
@@ -50,11 +46,12 @@
   }
 
   .body {
-    padding-top: 8px !important;
     background: $grey-super-light;
+    padding: 12px 24px !important;
 
     .input-container {
       margin: 24px 0;
+      padding: 0 !important;
     }
   }
 

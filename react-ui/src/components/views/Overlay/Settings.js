@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Settings() {
-  return <div className="content">Learning coming soon!</div>;
+  return <div className="content">Settings coming soon!</div>;
 }

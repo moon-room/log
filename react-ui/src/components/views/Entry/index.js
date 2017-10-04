@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
-import info from "../../media/info-white.png";
-import add from "../../media/add-white.png";
-import close from "../../media/close-white.png";
+import info from "../../../media/info-white.png";
+import add from "../../../media/add-white.png";
+import close from "../../../media/close-white.png";
 import "./index.css";
 
 import classnames from "classnames";

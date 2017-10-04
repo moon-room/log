@@ -1,7 +1,7 @@
 import React from "react";
-import avatar from "../../media/avatar.png";
-import learn from "../../media/learn.png";
-import settings from "../../media/settings.png";
+import avatar from "../../../media/avatar.png";
+import learn from "../../../media/learn.png";
+import settings from "../../../media/settings.png";
 
 export default function Menu({ toggleModal }) {
   return (

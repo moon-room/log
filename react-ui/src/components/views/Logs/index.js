@@ -5,7 +5,7 @@ import "./index.css";
 
 import remarkable from "remarkable";
 
-import { entries } from "../../data";
+import { entries } from "../../../data";
 
 const md = new remarkable();
 
