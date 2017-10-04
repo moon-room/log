@@ -51,6 +51,11 @@
 
   .body {
     padding-top: 8px !important;
+    background: $grey-super-light;
+
+    .input-container {
+      margin: 24px 0;
+    }
   }
 
   .info {

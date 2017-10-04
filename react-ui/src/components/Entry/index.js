@@ -100,7 +100,7 @@ class Entry extends Component {
         </ReactTooltip>
         {entryShown && (
           <div className="body">
-            <p>
+            <div className="input-container">
               <label>Coin: </label>
               <input
                 className="coin-input"
@@ -112,8 +112,8 @@ class Entry extends Component {
                   })}
                 value={coin}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>Investment: </label>
               <input
                 type="number"
@@ -123,8 +123,8 @@ class Entry extends Component {
                   })}
                 value={enter}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>What was your gut feeling on entering?</label>
               <textarea
                 placeholder="Butterflies"
@@ -134,8 +134,8 @@ class Entry extends Component {
                   })}
                 value={gut}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>What technical indicators did you observe?</label>
               <textarea
                 placeholder="I bought in just before the Golden Cross..."
@@ -145,8 +145,8 @@ class Entry extends Component {
                   })}
                 value={ta}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>What other things prompted this trade?</label>
               <textarea
                 placeholder="Tradingview charts, twitter links, etc..."
@@ -156,12 +156,12 @@ class Entry extends Component {
                   })}
                 value={other}
               />
-            </p>
-            <p>
+            </div>
+            <div>
               <button className="green" onClick={this.enterTrade}>
                 Enter Trade
               </button>
-            </p>
+            </div>
           </div>
         )}
       </div>
@@ -186,7 +186,7 @@ class Entry extends Component {
         </ReactTooltip>
         {entryShown && (
           <div className="body">
-            <p>
+            <div className="input-container">
               <label>Exit trade with... </label>
               <input
                 type="number"
@@ -196,8 +196,8 @@ class Entry extends Component {
                   })}
                 value={exit}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>What went well?</label>
               <textarea
                 placeholder="You know, I made a lot of fucking money..."
@@ -207,8 +207,8 @@ class Entry extends Component {
                   })}
                 value={wentWell}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>What will you do better next time?</label>
               <textarea
                 placeholder="I think I could have gotten out earlier with more profit..."
@@ -218,8 +218,8 @@ class Entry extends Component {
                   })}
                 value={nextImprove}
               />
-            </p>
-            <p>
+            </div>
+            <div className="input-container">
               <label>Did anything happen unexpectedly?</label>
               <textarea
                 placeholder="Well out of nowhere..."
@@ -229,12 +229,12 @@ class Entry extends Component {
                   })}
                 value={unexpected}
               />
-            </p>
-            <p>
+            </div>
+            <div>
               <button className="green" onClick={this.exitTrade}>
                 Complete Trade
               </button>
-            </p>
+            </div>
           </div>
         )}
       </div>
