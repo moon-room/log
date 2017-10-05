@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .logs-container,
 .logs-container .entry .entry__header,
 .logs-container .title .filter-bar {
@@ -10,8 +12,9 @@
   overflow-x: auto;
   text-align: left;
   padding: 0 !important;
-  margin-top: 12px;
-  width: 100%;
+  margin: 32px auto;
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+  background-color: white;
 
   h2,
   h3,
@@ -22,15 +25,31 @@
   }
 
   .title {
-    padding: 24px;
+    padding: 18px 24px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     min-height: 40px;
+    background-color: #222;
+    color: white;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        width: 100%;
+      }
+    }
 
     h2 {
       font-size: 20px;
       margin: 0;
+
+      @media (min-width: 768px) {
+        width: 100%;
+      }
     }
 
     .filter {
@@ -38,9 +57,13 @@
         margin-top: 12px;
         padding-left: 0;
         width: 100%;
+        display: flex;
+        align-items: center;
 
         @media (min-width: 768px) {
           display: flex;
+          justify-content: flex-end;
+          padding-right: 0;
         }
 
         label {
@@ -55,7 +78,7 @@
 
       &__item {
         padding: 0;
-        margin: 0 0 12px 0;
+        margin: 0 0 4px 0;
 
         @media (min-width: 768px) {
           padding-right: 12px;
@@ -66,8 +89,7 @@
 
   .entry {
     padding: 24px;
-    margin: 48px 0 32px 0;
-    background: rgba(221, 221, 221, 0.25);
+    margin: 48px 24px 32px 24px;
 
     &:first-of-type {
       margin-top: 0;
@@ -75,18 +97,67 @@
 
     &__header {
       display: flex;
-      flex-direction: column;
-      width: 100%;
+      flex-direction: row;
       border-bottom: 1px solid #999;
       margin-bottom: 24px;
+      justify-content: space-between;
+
+      div {
+        padding: 0 !important;
+      }
 
       h3 {
         margin: 8px 0;
         font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        font-weight: 700;
       }
 
       ul {
         margin-top: 0;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .roi,
+      .text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .roi {
+        span {
+          font-weight: 700;
+          font-size: 20px;
+
+          &.win {
+            color: #57d982;
+          }
+
+          &.loss {
+            color: #57d982;
+          }
+        }
+
+        img {
+          height: 36px;
+          width: 36px;
+          padding-right: 8px;
+        }
+      }
+    }
+
+    .text {
+      flex-direction: column;
+      justify-content: flex-end;
+
+      @media (min-width: 400px) {
+        flex-direction: row;
+        span {
+          padding-right: 8px;
+        }
       }
     }
 
@@ -113,9 +184,15 @@
 
 .pagination-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin: 24px 0 0 0;
+
+  .line-break {
+    margin: 24px 0;
+    width: 300px;
+  }
 }
 
 .pagination {

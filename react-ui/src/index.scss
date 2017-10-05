@@ -7,6 +7,7 @@ body {
   padding: 0;
   font-family: Roboto;
   font-weight: 300;
+  background: $grey-super-light;
 }
 
 body.noScroll {
@@ -23,13 +24,20 @@ h6 {
   font-weight: 300;
 }
 
-.container {
+.container,
+.content,
+.attribution {
   text-align: center;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.container .attribution {
+.attribution a {
+  text-decoration: none;
+  color: white;
+}
+
+.attribution {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,16 +49,12 @@ h6 {
   background: black;
 }
 
-.container .attribution a {
-  text-decoration: none;
-  color: white;
-}
-
 .content {
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-around;
   align-items: flex-start;
+  margin: 32px auto 64px auto;
 }
 
 .content div {

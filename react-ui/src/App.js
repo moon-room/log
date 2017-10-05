@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     const { modalVisible } = this.state;
     return (
-      <div className="container">
+      <div>
         <Overlay visible={modalVisible} toggleModal={this.toggleModal} />
 
         <Header toggleModal={this.toggleModal} />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Pagination from "react-js-pagination";
-import ReactEmojiRenderer from "react-emoji-render";
 import "./index.css";
 
 import remarkable from "remarkable";
@@ -9,11 +8,18 @@ import { entries } from "../../../data";
 
 const md = new remarkable();
 
-const emojizePositivity = (entry, exit) => {
-  const score = exit - entry;
-  const emoji = Boolean(score) ? ":heart_eyes:" : ":persevere:";
-  return <ReactEmojiRenderer text={`${emoji} -> ${score}`} />;
-};
+function renderRoi(entry, exit) {
+  const roi = exit - entry;
+  console.log(roi);
+  const img = roi > 0 ? "increase" : "decrease";
+  const src = require(`../../../media/${img}.png`);
+  return (
+    <li className="roi">
+      <img src={src} alt={img} />
+      <span>{parseFloat(roi / entry * 100).toFixed(1) + "%"}</span>
+    </li>
+  );
+}
 
 class Logs extends Component {
   state = {
@@ -73,6 +79,23 @@ class Logs extends Component {
             </div>
           </div>
         </div>
+
+        <div className="pagination-container">
+          <Pagination
+            prevPageText="prev"
+            nextPageText="next"
+            firstPageText="first"
+            lastPageText="last"
+            hideDisabled
+            activePage={currentPage}
+            itemsCountPerPage={resultsPerPage}
+            totalItemsCount={entries.length}
+            pageRangeDisplayed={3}
+            onChange={this.handlePageChange}
+          />
+          <div className="line-break" />
+        </div>
+
         <div className="notepad-view">
           {entries
             .slice(
@@ -107,14 +130,21 @@ class Logs extends Component {
               ) => (
                 <div className="entry" key={i}>
                   <div className="entry__header">
-                    <h3>
-                      {date}, {coin}
-                    </h3>
-                    <ul>
-                      <li>Investment: {entry}</li>
-                      <li>Exit Amount: {exit}</li>
-                      <li>{emojizePositivity(entry, exit)}</li>
-                    </ul>
+                    <div>
+                      <h3>
+                        <span className="date">{date}</span>
+                        <span className="coin">{coin}</span>
+                      </h3>
+                    </div>
+                    <div>
+                      <ul>
+                        {renderRoi(entry, exit)}
+                        <li className="text">
+                          <span>Investment: {entry}</span>
+                          <span>Exit Amount: {exit}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                   <h4>
                     What Technical Analysis did I use to enter this trade?
@@ -161,20 +191,6 @@ class Logs extends Component {
                 </div>
               )
             )}
-        </div>
-        <div className="pagination-container">
-          <Pagination
-            prevPageText="prev"
-            nextPageText="next"
-            firstPageText="first"
-            lastPageText="last"
-            hideDisabled
-            activePage={currentPage}
-            itemsCountPerPage={resultsPerPage}
-            totalItemsCount={entries.length}
-            pageRangeDisplayed={3}
-            onChange={this.handlePageChange}
-          />
         </div>
       </div>
     );
