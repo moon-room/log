@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/views/Header/";
 import Logs from "./components/views/Logs/";
-import Entry from "./components/views/Entry/";
+import AddEntry from "./components/views/AddEntry/";
 import Overlay from "./components/views/Overlay";
 
 class App extends Component {
@@ -31,8 +31,8 @@ class App extends Component {
         <Header toggleModal={this.toggleModal} />
 
         <div className="content">
+          <AddEntry />
           <Logs />
-          <Entry />
         </div>
         <div className="attribution">
           <div>

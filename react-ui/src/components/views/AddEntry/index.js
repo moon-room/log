@@ -114,15 +114,16 @@ class Entry extends Component {
               />
             </div>
             <div className="input-container">
-              <label>Investment: </label>
+              <label>Enter Trade with </label>
               <input
                 type="number"
                 onChange={e =>
                   this.setState({
-                    investment: e.target.value
+                    enter: e.target.value
                   })}
                 value={enter}
-              />
+              />{" "}
+              BTC.
             </div>
             <div className="input-container">
               <label>What was your gut feeling on entering?</label>
@@ -130,7 +131,7 @@ class Entry extends Component {
                 placeholder="Butterflies"
                 onChange={e =>
                   this.setState({
-                    why: e.target.value
+                    gut: e.target.value
                   })}
                 value={gut}
               />
@@ -141,7 +142,7 @@ class Entry extends Component {
                 placeholder="I bought in just before the Golden Cross..."
                 onChange={e =>
                   this.setState({
-                    why: e.target.value
+                    ta: e.target.value
                   })}
                 value={ta}
               />
@@ -157,7 +158,7 @@ class Entry extends Component {
                 value={other}
               />
             </div>
-            <div>
+            <div className="button-container">
               <button className="green" onClick={this.enterTrade}>
                 Enter Trade
               </button>
@@ -187,7 +188,7 @@ class Entry extends Component {
         {entryShown && (
           <div className="body">
             <div className="input-container">
-              <label>Exit trade with... </label>
+              <label>Exited trade with </label>
               <input
                 type="number"
                 onChange={e =>
@@ -195,7 +196,8 @@ class Entry extends Component {
                     exit: e.target.value
                   })}
                 value={exit}
-              />
+              />{" "}
+              BTC
             </div>
             <div className="input-container">
               <label>What went well?</label>
@@ -230,7 +232,7 @@ class Entry extends Component {
                 value={unexpected}
               />
             </div>
-            <div>
+            <div className="button-container">
               <button className="green" onClick={this.exitTrade}>
                 Complete Trade
               </button>

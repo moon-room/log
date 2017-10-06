@@ -28,29 +28,16 @@ class Logs extends Component {
     winLossFilter: "all"
   };
 
-  handlePageChange = n => {
-    console.log(n);
-    if (n === this.state.currentPage) {
-      return;
-    }
-    this.setState({ currentPage: n });
-  };
+  handlePageChange = n =>
+    n !== this.state.currentPage && this.setState({ currentPage: n });
 
-  setResultsPerPage = e => {
-    const value = e.target.value;
-    if (value === this.state.resultsPerPage) {
-      return;
-    }
-    this.setState({ resultsPerPage: Number(value) });
-  };
+  setResultsPerPage = e =>
+    e.target.value !== this.state.resultsPerPage &&
+    this.setState({ resultsPerPage: Number(e.target.value), currentPage: 1 });
 
-  filterWinsOrLosses = e => {
-    const value = e.target.value;
-    if (value === this.state.winLossFilter) {
-      return;
-    }
-    this.setState({ winLossFilter: value });
-  };
+  filterWinsOrLosses = e =>
+    e.target.value !== this.state.winLossFilter &&
+    this.setState({ winLossFilter: e.target.value, currentPage: 1 });
 
   render() {
     const { resultsPerPage, currentPage, winLossFilter } = this.state;
