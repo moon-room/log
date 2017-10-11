@@ -5,25 +5,36 @@ import { isUserAuthenticated } from "./api/security";
 
 import MoonLog from "./components/views/MoonLog";
 import Portal from "./components/views/Portal";
+import { authenticateUser } from "./api/security";
 
 export default class App extends Component {
   state = {
     authenticated: false,
-    user: ""
+    username: ""
   };
 
-  authenticateUser = () => {};
-  grantAuthority = () => {};
-  login = () => {};
-  signup = () => {};
-  setUser = () => {};
+  authenticateUser = token => authenticateUser(token);
+
+  grantAuthority = (authenticated, username) =>
+    this.setState({
+      authenticated,
+      username
+    });
 
   render() {
     return (
       <BrowserRouter>
         <div id="App">
           <Switch>
-            <Route exact pattern="/portal" component={Portal} />
+            <Route
+              exact
+              pattern="/portal"
+              component={Portal}
+              authenciationProps={{
+                authenticateUser: this.authenciateUser,
+                grantAuthority: this.grantAuthority
+              }}
+            />
             <PrivateRoute exact pattern="/" component={MoonLog} />
           </Switch>
         </div>

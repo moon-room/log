@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import "./portal.css";
 import moon from "../../media/logo.png";
 
+import { login, signup } from "../../api/security";
+
 export default class Portal extends Component {
   state = {
     errors: {},
@@ -19,7 +21,9 @@ export default class Portal extends Component {
     });
 
     this.setState({
-      redirectToReferrer: true
+      redirectToReferrer: true,
+      username: "",
+      password: ""
     });
   };
 
@@ -27,7 +31,7 @@ export default class Portal extends Component {
     e.preventDefault();
     const { username, password, failureAttempts } = this.state;
 
-    this.props.login(
+    login(
       encodeURIComponent(username),
       encodeURIComponent(password),
       ({ data }) => {
@@ -52,7 +56,7 @@ export default class Portal extends Component {
     e.preventDefault();
     const { username, password } = this.state;
 
-    this.props.signup(
+    signup(
       encodeURIComponent(username),
       encodeURIComponent(password),
       ({ data }) => {
