@@ -1,55 +1,58 @@
-import moment from "moment";
-import { comparePass, encodeToken } from "./helpers";
-import { validateLoginForm, validateSignupForm } from "../validation";
-import { getUser, createUser } from "./user";
+const moment = require("moment");
+const { comparePass, encodeToken } = require("./helpers");
+const { validateLoginForm, validateSignupForm } = require("./validation");
+const { getUser, createUser } = require("../queries/user");
 
-export const AttemptLogin = (req, res) =>
-  !validateLoginForm(req.body).success
-    ? res.status(400).json({
-        success: false,
-        message: validationResult.message,
-        errors: validationResult.errors
-      })
-    : getUser(req.body.username)
-        .then(res => {
-          comparePass(req.body.password, res.password);
-          return res;
+module.exports = {
+  AttemptLogin: function(req, res) {
+    !validateLoginForm(req.body).success
+      ? res.status(400).json({
+          success: false,
+          message: validationResult.message,
+          errors: validationResult.errors
         })
-        .then(res => encodeToken(res))
-        .then(token =>
-          res.status(200).json({
-            status: "success",
-            token
+      : getUser(req.body.username)
+          .then(res => {
+            comparePass(req.body.password, res.password);
+            return res;
           })
-        )
-        .catch(error =>
-          res.status(500).json({
-            status: "error",
-            error
+          .then(res => encodeToken(res))
+          .then(token =>
+            res.status(200).json({
+              status: "success",
+              token
+            })
+          )
+          .catch(error =>
+            res.status(500).json({
+              status: "error",
+              error
+            })
+          );
+  },
+  AttemptSignup: function(req, res) {
+    !validateSignupForm(req.body)
+      ? res.status(400).json({
+          success: false,
+          message: validationResult.message,
+          errors: validationResult.errors
+        })
+      : createUser(req.body.username, req.body.password)
+          .then(res => {
+            comparePass(req.body.password, res.password);
+            return res;
           })
-        );
-
-export const AttemptSignup = (req, res) =>
-  !validateSignupForm(req.body)
-    ? res.status(400).json({
-        success: false,
-        message: validationResult.message,
-        errors: validationResult.errors
-      })
-    : createUser(req.body.username, req.body.password)
-        .then(res => {
-          comparePass(req.body.password, res.password);
-          return res;
-        })
-        .then(res => encodeToken(res))
-        .then(token => {
-          res.status(200).json({
-            status: "success",
-            token
+          .then(res => encodeToken(res))
+          .then(token => {
+            res.status(200).json({
+              status: "success",
+              token
+            });
+          })
+          .catch(() => {
+            res.status(500).json({
+              status: "error"
+            });
           });
-        })
-        .catch(() => {
-          res.status(500).json({
-            status: "error"
-          });
-        });
+  }
+};

@@ -1,7 +1,7 @@
-import { decodeToken } from "../auth/helpers";
-import { getUser } from "../queries/user";
+const { decodeToken } = require("../auth/helpers");
+const { getUser } = require("../queries/user");
 
-module.exports = (req, res, next) => {
+module.exports = function(req, res, next) {
   if (!(req.headers && req.headers.token)) {
     return res.status(400).json({
       status: "Please log in"

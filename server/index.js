@@ -3,9 +3,13 @@ const path = require("path");
 const compression = require("compression");
 const bodyParser = require("body-parser");
 
-if (process.env.ENV === "test") {
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  console.log("hello");
   require("dotenv").config();
 }
+
+const { AttemptLogin, AttemptSignup } = require("./auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,8 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // // API
 // // Authentication
-// app.post('/auth/login', AttemptLogin);
-// app.post('/auth/signup', AttemptSignup);
+app.post("/auth/login", AttemptLogin);
+app.post("/auth/signup", AttemptSignup);
 // // Authentication middleware
 // app.use('/api', require('./validation/auth-check'));
 // // Postgres DB Routes
