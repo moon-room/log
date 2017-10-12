@@ -3,9 +3,7 @@ const path = require("path");
 const compression = require("compression");
 const bodyParser = require("body-parser");
 
-console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
-  console.log("hello");
   require("dotenv").config();
 }
 
@@ -17,6 +15,15 @@ const PORT = process.env.PORT || 5000;
 // Compression for performance enhancement
 app.use(compression());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
@@ -26,8 +33,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // // API
 // // Authentication
-app.post("/auth/login", AttemptLogin);
-app.post("/auth/signup", AttemptSignup);
+app.post("/api/login", AttemptLogin);
+app.post("/api/signup", AttemptSignup);
 // // Authentication middleware
 // app.use('/api', require('./validation/auth-check'));
 // // Postgres DB Routes
