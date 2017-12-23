@@ -1,6 +1,6 @@
 module.exports = {
   validateSignupForm: function(payload) {
-    const errors = {};
+    const errors = [];
     let isFormValid = true;
     let message = "";
 
@@ -10,13 +10,14 @@ module.exports = {
       payload.username.length < 3
     ) {
       isFormValid = false;
-      errors.username = "Usernames must be longer than 4 characters";
+      errors.push("Usernames must be longer than 4 characters");
     }
 
     if (!payload || payload.password.length < 16) {
       isFormValid = false;
-      errors.password =
-        "Generate a password above 16 characters. Your data is sacred, guard it well.";
+      errors.push(
+        "Generate a password above 16 characters. Your data is sacred, guard it well."
+      );
     }
 
     if (!isFormValid) {
@@ -30,7 +31,7 @@ module.exports = {
     };
   },
   validateLoginForm: function(payload) {
-    const errors = {};
+    const errors = [];
     let isFormValid = true;
     let message = "";
 
@@ -40,7 +41,7 @@ module.exports = {
       payload.username.trim().length === 0
     ) {
       isFormValid = false;
-      errors.username = "Please provide your username address.";
+      errors.push("Please provide your username address.");
     }
 
     if (
@@ -49,7 +50,7 @@ module.exports = {
       payload.password.trim().length === 0
     ) {
       isFormValid = false;
-      errors.password = "Please provide your password.";
+      errors.push("Please provide your password.");
     }
 
     if (!isFormValid) {

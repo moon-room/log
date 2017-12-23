@@ -6,17 +6,21 @@ const { getUser, createUser } = require("../queries/user");
 
 module.exports = {
   comparePass: function(pass, hash) {
+    if (!Boolean(pass) || !Boolean(hash)) {
+      return false;
+    }
+
     const compareResults = bcrypt.compareSync(pass, hash);
     return compareResults ? true : false;
   },
-  encodeToken: function(pass, hash) {
+  encodeToken: function(pass, hash, id) {
     return jwt.encode(
       {
         exp: moment()
           .add(14, "days")
           .unix(),
         iat: moment().unix(),
-        sub: user.id
+        sub: id
       },
       process.env.TOKEN_SECRET
     );

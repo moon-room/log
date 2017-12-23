@@ -29,11 +29,13 @@ export default class App extends Component {
             <Route
               exact
               pattern="/portal"
-              component={Portal}
-              authenciationProps={{
-                authenticateUser: this.authenciateUser,
-                grantAuthority: this.grantAuthority
-              }}
+              render={props => (
+                <Portal
+                  {...props}
+                  authenticateUser={this.authenticateUser}
+                  grantAuthority={this.grantAuthority}
+                />
+              )}
             />
             <PrivateRoute exact pattern="/" component={MoonLog} />
           </Switch>
@@ -44,6 +46,7 @@ export default class App extends Component {
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  console.log("hello!");
   return (
     <Route
       {...rest}
@@ -57,7 +60,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
               state: { from: props.location }
             }}
           />
-        )}
+        )
+      }
     />
   );
 };

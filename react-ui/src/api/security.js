@@ -16,7 +16,7 @@ export const login = (username, password, cb) =>
     .catch(e =>
       cb({
         message: "failed login",
-        error: e
+        errors: e
       })
     );
 
@@ -34,7 +34,7 @@ export const signup = (username, password, cb) =>
     .catch(e =>
       cb({
         message: "failed signup",
-        error: e
+        errors: e
       })
     );
 

@@ -9,8 +9,11 @@
   .portal .login-container {
     background: rgba(255, 255, 255, 0.95);
     padding: 48px; }
-    .portal .login-container .introduction {
+    .portal .login-container .introduction,
+    .portal .login-container .error-message {
       max-width: 300px;
+      margin: 0 auto; }
+    .portal .login-container .introduction {
       text-align: center;
       margin-bottom: 24px; }
       .portal .login-container .introduction .logo {
@@ -18,6 +21,10 @@
         max-height: 132px; }
       .portal .login-container .introduction .description {
         font-size: 90%; }
+    .portal .login-container .error-message {
+      color: red;
+      text-align: center;
+      margin-bottom: 24px; }
     .portal .login-container .form-group {
       margin: 12px 0; }
       @media (max-width: 425px) {

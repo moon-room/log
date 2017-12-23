@@ -7,23 +7,27 @@ import { login, signup } from "../../api/security";
 
 export default class Portal extends Component {
   state = {
-    errors: {},
+    errors: [],
     username: "",
     password: "",
-    redirectToReferrer: false
+    authenticationPassed: false
   };
 
   pass = (token, username) => {
-    this.props.authenticateUser(token);
-    this.props.grantAuthority({
+    console.log(this.props);
+    const { authenticateUser, grantAuthority } = this.props;
+
+    authenticateUser(token);
+    grantAuthority({
       authenticated: true,
       username
     });
 
     this.setState({
-      redirectToReferrer: true,
+      authenticationPassed: true,
       username: "",
-      password: ""
+      password: "",
+      errors: []
     });
   };
 
@@ -34,19 +38,20 @@ export default class Portal extends Component {
     login(
       encodeURIComponent(username),
       encodeURIComponent(password),
-      ({ data }) => {
-        if (!data) {
+      response => {
+        if (!response.data) {
           if (failureAttempts >= 3) {
             // set locked cookie.
             // redirect to some messed up website.
           } else {
+            console.log(response);
             this.setState({
-              error: "User not found",
+              errors: response.errors.response.data.errors,
               failureAttempts: failureAttempts + 1
             });
           }
         } else {
-          this.pass(data.token, username);
+          this.pass(response.data.token, username);
         }
       }
     );
@@ -54,23 +59,35 @@ export default class Portal extends Component {
 
   authenticateSignupAttempt = e => {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { username, password, failureAttempts } = this.state;
 
     signup(
       encodeURIComponent(username),
       encodeURIComponent(password),
-      ({ data }) => {
-        if (data) {
-          this.pass(data.token, username);
-        } // TODO: add else for failures
+      response => {
+        if (!response.data) {
+          if (failureAttempts >= 3) {
+            // set locked cookie.
+            // redirect to some messed up website.
+          } else {
+            console.log(response);
+            console.log(response.errors.response.data.errors);
+            this.setState({
+              errors: response.errors.response.data.errors,
+              failureAttempts: failureAttempts + 1
+            });
+          }
+        } else {
+          this.pass(response.data.token, username);
+        }
       }
     );
   };
 
   render() {
-    const { username, password, redirectToReferrer } = this.state;
+    const { username, password, authenticationPassed, errors } = this.state;
 
-    return redirectToReferrer ? (
+    return authenticationPassed ? (
       <Redirect to="/" />
     ) : (
       <div className="portal">
@@ -83,6 +100,12 @@ export default class Portal extends Component {
               you have an account, or register to make a new one.
             </p>
           </div>
+          {errors &&
+            errors.map((error, i) => (
+              <p key={i} className="error-message">
+                {error}
+              </p>
+            ))}
           <div className="form-group">
             <label>Username: </label>
             <input
