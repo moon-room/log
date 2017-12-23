@@ -14,7 +14,6 @@ export default class Portal extends Component {
   };
 
   pass = (token, username) => {
-    console.log(this.props);
     const { authenticateUser, grantAuthority } = this.props;
 
     authenticateUser(token);
@@ -44,7 +43,6 @@ export default class Portal extends Component {
             // set locked cookie.
             // redirect to some messed up website.
           } else {
-            console.log(response);
             this.setState({
               errors: response.errors.response.data.errors,
               failureAttempts: failureAttempts + 1
@@ -70,8 +68,6 @@ export default class Portal extends Component {
             // set locked cookie.
             // redirect to some messed up website.
           } else {
-            console.log(response);
-            console.log(response.errors.response.data.errors);
             this.setState({
               errors: response.errors.response.data.errors,
               failureAttempts: failureAttempts + 1

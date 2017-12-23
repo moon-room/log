@@ -10,7 +10,6 @@ const md = new remarkable();
 
 function renderRoi(entry, exit) {
   const roi = exit - entry;
-  console.log(roi);
   const img = roi > 0 ? "increase" : "decrease";
   const src = require(`../../../media/${img}.png`);
   return (
