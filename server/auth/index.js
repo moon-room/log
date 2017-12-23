@@ -1,55 +1,87 @@
-import moment from "moment";
-import { comparePass, encodeToken } from "./helpers";
-import { validateLoginForm, validateSignupForm } from "../validation";
-import { getUser, createUser } from "./user";
+const moment = require("moment");
+const { comparePass, encodeToken } = require("./helpers");
+const { validateLoginForm, validateSignupForm } = require("./validation");
+const { getUser, createUser } = require("../queries/user");
 
-export const AttemptLogin = (req, res) =>
-  !validateLoginForm(req.body).success
-    ? res.status(400).json({
+module.exports = {
+  AttemptLogin: async function(req, res) {
+    const validationResult = validateLoginForm(req.body);
+
+    if (!validationResult.success) {
+      res.status(400).json({
         success: false,
         message: validationResult.message,
         errors: validationResult.errors
-      })
-    : getUser(req.body.username)
-        .then(res => {
-          comparePass(req.body.password, res.password);
-          return res;
-        })
-        .then(res => encodeToken(res))
-        .then(token =>
-          res.status(200).json({
-            status: "success",
-            token
-          })
-        )
-        .catch(error =>
-          res.status(500).json({
-            status: "error",
-            error
-          })
-        );
+      });
+    } else {
+      try {
+        const user = await getUser(req.body.username);
+        const passMatches = comparePass(req.body.password, user.password);
 
-export const AttemptSignup = (req, res) =>
-  !validateSignupForm(req.body)
-    ? res.status(400).json({
-        success: false,
-        message: validationResult.message,
-        errors: validationResult.errors
-      })
-    : createUser(req.body.username, req.body.password)
-        .then(res => {
-          comparePass(req.body.password, res.password);
-          return res;
-        })
-        .then(res => encodeToken(res))
-        .then(token => {
-          res.status(200).json({
-            status: "success",
-            token
+        if (!passMatches) {
+          return res.status(400).json({
+            success: false,
+            errors: ["Password did not match password hash saved in database."]
           });
-        })
-        .catch(() => {
-          res.status(500).json({
-            status: "error"
-          });
+        }
+
+        const token = encodeToken(res, user.password, user.id);
+
+        return res.status(200).json({
+          success: true,
+          token
         });
+      } catch (e) {
+        return handleError(e, res);
+      }
+    }
+  },
+  AttemptSignup: async function(req, res) {
+    const validationResult = validateLoginForm(req.body);
+
+    if (!validationResult.success) {
+      res.status(400).json({
+        success: false,
+        message: validationResult.message,
+        errors: validationResult.errors
+      });
+    } else {
+      try {
+        const preexists = await getUser(req.body.username);
+
+        if (preexists) {
+          return res.status(400).json({
+            success: false,
+            errors: ["User already exists by this username."]
+          });
+        }
+
+        const user = await createUser(req.body.username, req.body.password);
+        const passMatches = comparePass(req.body.password, user.password);
+
+        if (!passMatches) {
+          return res.status(400).json({
+            success: false,
+            errors: ["Password did not match password hash saved in database."]
+          });
+        }
+
+        const token = encodeToken(res, user.password, user.id);
+
+        return res.status(200).json({
+          success: false,
+          token
+        });
+      } catch (e) {
+        return handleError(e, res);
+      }
+    }
+  }
+};
+
+function handleError(error, res) {
+  return res.status(500).json({
+    success: false,
+    errors: [error]
+  });
+}

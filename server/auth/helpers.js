@@ -1,28 +1,34 @@
-import moment from "moment";
-import jwt from "jwt-simple";
-import bcrypt from "bcrypt";
-import { validateLoginForm, validateSignupForm } from "../validation";
-import { getUser, createUser } from "./user";
+const moment = require("moment");
+const jwt = require("jwt-simple");
+const bcrypt = require("bcrypt");
+const { validateLoginForm, validateSignupForm } = require("./validation");
+const { getUser, createUser } = require("../queries/user");
 
+module.exports = {
+  comparePass: function(pass, hash) {
+    if (!Boolean(pass) || !Boolean(hash)) {
+      return false;
+    }
 
-export const comparePass = (pass, hash) => 
-  bcrypt.compareSync(pass, hash) ? true : throw new Error("bad password silly monkey");
-
-export const encodeToken = user =>
-  jwt.encode(
-    {
-      exp: moment()
-        .add(14, "days")
-        .unix(),
-      iat: moment().unix(),
-      sub: user.id
-    },
-    process.env.TOKEN_SECRET
-  );
-
-export const decodeToken = (token, cb) => {
-  const now = moment().unix();
-  const payload = jwt.decode(token, process.env.TOKEN_SECRET);
-  const exp = payload.exp;
-  now > exp ? cb("Token has expired.") : cb(null, payload);
+    const compareResults = bcrypt.compareSync(pass, hash);
+    return compareResults ? true : false;
+  },
+  encodeToken: function(pass, hash, id) {
+    return jwt.encode(
+      {
+        exp: moment()
+          .add(14, "days")
+          .unix(),
+        iat: moment().unix(),
+        sub: id
+      },
+      process.env.TOKEN_SECRET
+    );
+  },
+  decodeToken: function(token, cb) {
+    const now = moment().unix();
+    const payload = jwt.decode(token, process.env.TOKEN_SECRET);
+    const exp = payload.exp;
+    now > exp ? cb("Token has expired.") : cb(null, payload);
+  }
 };

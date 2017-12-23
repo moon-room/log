@@ -1,54 +1,64 @@
 import React, { Component } from "react";
-import Header from "./components/views/Header/";
-import Logs from "./components/views/Logs/";
-import AddEntry from "./components/views/AddEntry/";
-import Overlay from "./components/views/Overlay";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
-class App extends Component {
+import { isUserAuthenticated } from "./api/security";
+
+import MoonLog from "./components/views/MoonLog";
+import Portal from "./components/views/Portal";
+import { authenticateUser } from "./api/security";
+
+export default class App extends Component {
   state = {
-    modalVisible: ""
+    authenticated: false,
+    username: ""
   };
 
-  toggleModal = which => {
-    if (Boolean(which)) {
-      document.body.className += "noScroll";
-    } else {
-      document.body.className = document.body.className.replace(
-        /\bnoScroll\b/,
-        ""
-      );
-    }
+  authenticateUser = token => authenticateUser(token);
 
-    this.setState({ modalVisible: which });
-  };
+  grantAuthority = (authenticated, username) =>
+    this.setState({
+      authenticated,
+      username
+    });
 
   render() {
-    const { modalVisible } = this.state;
     return (
-      <div>
-        <Overlay visible={modalVisible} toggleModal={this.toggleModal} />
-
-        <Header toggleModal={this.toggleModal} />
-
-        <div className="content">
-          <AddEntry />
-          <Logs />
+      <BrowserRouter>
+        <div id="App">
+          <Route
+            exact
+            pattern="/portal"
+            render={props => (
+              <Portal
+                {...props}
+                authenticateUser={this.authenticateUser}
+                grantAuthority={this.grantAuthority}
+              />
+            )}
+          />
+          <PrivateRoute exact pattern="/" component={MoonLog} />
         </div>
-        <div className="attribution">
-          <div>
-            Icons from{" "}
-            <a
-              href="https://www.flaticon.com/"
-              rel="noopener noreferrer"
-              title="Flaticon"
-            >
-              www.flaticon.com
-            </a>
-          </div>
-        </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isUserAuthenticated() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/portal",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};

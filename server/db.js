@@ -1,6 +1,3 @@
-const pgp = require('pg-promise')();
-
+const pgp = require("pg-promise")();
 pgp.pg.defaults.ssl = true;
-const db = pgp(process.env.DATABASE_URL);
-
-export default db;
+module.exports = pgp(process.env.DATABASE_URL);

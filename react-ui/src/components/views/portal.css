@@ -1,0 +1,43 @@
+.portal {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../../media/stars.jpg") no-repeat center center fixed;
+  background-size: cover; }
+  .portal .login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 48px; }
+    .portal .login-container .introduction,
+    .portal .login-container .error-message {
+      max-width: 300px;
+      margin: 0 auto; }
+    .portal .login-container .introduction {
+      text-align: center;
+      margin-bottom: 24px; }
+      .portal .login-container .introduction .logo {
+        max-width: 132px;
+        max-height: 132px; }
+      .portal .login-container .introduction .description {
+        font-size: 90%; }
+    .portal .login-container .error-message {
+      color: red;
+      text-align: center;
+      margin-bottom: 24px; }
+    .portal .login-container .form-group {
+      margin: 12px 0; }
+      @media (max-width: 425px) {
+        .portal .login-container .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center; }
+          .portal .login-container .form-group input {
+            width: 100%; } }
+  .portal .button-container {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%; }

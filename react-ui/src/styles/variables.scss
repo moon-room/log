@@ -1,4 +1,5 @@
 $go-green: #49c588;
+$more-blue: #00bce4;
 
 @function go-green-transparent($percentage) {
   @return rgba(45, 185, 40, $percentage);
